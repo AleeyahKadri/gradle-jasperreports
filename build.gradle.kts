@@ -39,7 +39,7 @@ gradlePlugin {
     }
 }
 
-configure<com.gradle.publish.PluginBundleExtension> {
+pluginBundle {
     // These settings are set for the whole plugin bundle
     website = "https://github.com/gmazelier/gradle-jasperreports"
     vcsUrl = "https://github.com/gmazelier/gradle-jasperreports.git"
@@ -84,7 +84,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 val groovydocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("groovydoc")
-    from(tasks.named("groovydoc"))
+    from(tasks.groovydoc.get().destinationDir)
 }
 
 artifacts {
