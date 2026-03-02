@@ -82,7 +82,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 val groovydocJar by tasks.registering(Jar::class) {
 	archiveClassifier.set("groovydoc")
-	from(tasks.named<Groovydoc>("groovydoc").map { it.destinationDir!! })
+	from(tasks.named<Groovydoc>("groovydoc").map { it.destinationDir })
 }
 
 artifacts {
