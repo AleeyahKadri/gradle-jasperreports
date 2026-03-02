@@ -13,7 +13,6 @@ version = project.property("version")
 
 repositories {
 	mavenCentral()
-	jcenter()
 	maven {
 		url = uri("http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/")
 		isAllowInsecureProtocol = true
@@ -83,7 +82,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 val groovydocJar by tasks.registering(Jar::class) {
 	archiveClassifier.set("groovydoc")
-	from(tasks.named("groovydoc"))
+	from(tasks.named<Groovydoc>("groovydoc").map { it.destinationDir!! })
 }
 
 artifacts {
