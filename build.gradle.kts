@@ -15,6 +15,7 @@ plugins {
 
 group = "com.github.gmazelier"
 version = project.property("version") as String
+val jasperreportsPluginName = "jasperreports"
 
 repositories {
     jcenter()
@@ -34,7 +35,7 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create("jasperreports") {
+        create(jasperreportsPluginName) {
             id = "com.github.gmazelier.jasperreports"
             implementationClass = "com.github.gmazelier.plugins.JasperReportsPlugin"
         }
@@ -48,7 +49,7 @@ configure<PluginBundleExtension> {
     tags = listOf("gradle", "jasperreports")
 
     plugins {
-        "jasperreports" {
+        named(jasperreportsPluginName) {
             displayName = "Gradle JasperReports Plugin"
         }
     }
@@ -82,6 +83,6 @@ tasks.named<GroovyCompile>("compileGroovy") {
 }
 
 artifacts {
-    add("archives", sourcesJar.get())
-    add("archives", groovydocJar.get())
+    add("archives", sourcesJar)
+    add("archives", groovydocJar)
 }
